@@ -6,6 +6,8 @@
 
 - make -j(no. of processors) : For parallel compilation in esp32, compilation using all the proceaaors(CPU).
 
+- cp -R : To copy the whole content of the directory.
+
 # Commands To Set-Up esp32 IDF
 
 - **Step- 1:** sudo apt-get install git wget flex bison gperf python3 python3-pip python3-setuptools cmake ninja-build ccache libffi-dev libssl-dev dfu-util libusb-1.0-0
@@ -39,21 +41,40 @@
 
 
 - ls -al /dev/ttyUSB*
+- idf.py fullclean
 - sudo chmod 777 /dev/ttyUSB0 : For all permissions.
 
+- vTaskDelay(1000 / portTICK_PERIOD_MS)
 
+# Files Required For esp23 IDF Project
+
+- CMakeLists.txt
+
+    - The following lines of boilerplate have to be in your project's
+
+    - CMakeLists in this exact order for cmake to work correctly 
+
+    - *cmake_minimum_required(VERSION 3.5)*
+
+    - *include($ENV{IDF_PATH}/tools/cmake/project.cmake)*
+
+    - *project(tasks)*
+
+- main
+
+    - CMakeLists.txt **idf_component_register(SRCS "source_code.c" INCLUDE_DIRS "")**
+
+    - source_code.c
 
 # Commands To Build & Flash Project In esp32
 
-**1ND DO  *./install.sh esp32*  IN  *esp-idf*  DIRECTORY**
-
-**2ND DO  *. export.sh*  IN  *esp-idf*  DIRECTORY**
+**. $HOME/esp/esp-idf/export.sh** : Run inside the project directory once in a cmd window. No need if already put in **vi ~/.profile**.
 
 - **Step- 1:** *cd ~/esp/hello_world* : Go to project directory
 
 - **Step- 2:** *idf.py set-target esp32* : Set as esp32 project.
 
-- **Step- 3:** *idf.py menuconfig* : To load *O* and generate *sdkconfig* file.
+- **Step- 3:** *idf.py menuconfig* : To load *O* and generate *sdkconfig* file. If you want to customize it. Like setting baude rate, tick rate, enable/disable bluetooth etc..
 
 - **Step- 4:** *idf.py build* : To build the project(code).
 
