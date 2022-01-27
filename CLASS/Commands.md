@@ -50,9 +50,11 @@
 
 - CMakeLists.txt
 
-    - The following lines of boilerplate have to be in your project's
+    - #The following lines of boilerplate have to be in your project's
 
-    - CMakeLists in this exact order for cmake to work correctly 
+    - #CMakeLists in this exact order for cmake to work correctly 
+
+    - Atleast one **#** should be their before writing the codes below, otherwise it will show error.
 
     - *cmake_minimum_required(VERSION 3.5)*
 
